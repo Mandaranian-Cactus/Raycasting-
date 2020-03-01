@@ -1,0 +1,35 @@
+The "3-D conversion" produces a "3-D" (It's technically 3-D however you have no reall access to the 3rd dimension) map where in the player 
+can navigate around and past obstacles. The project is still within a level of infancy and edits will be added in the future to 
+incorperate more game-like elements.
+
+Optimization:
+
+#1 Collision detection
+
+I think the optimization is similair to that of a quad-tree (Like 35% similiar). We basically have boolean array storing the areas where
+there are and are not walls. Whenever a player moves, we predict where the player is gonna be and compare to with the imformation of the
+boolean array. If the player hops into an area occupied by a wall, we have to set the player's position to be just touching the walls's
+wall instead.
+
+#2 Ray casting
+
+Leverages off the fact that the map is designed using squares with 90 degree walls. Doing this means that when sending a ray, we only
+need to calculate collision with the vertical columns and horizontal rows of the map (More information is provided in the code itself as
+well as is referenced in the links of READ_ME)
+
+*Note that this version of ray intersection is only possible with a 90 degree square-designed map. 
+Other methods are mentioned in "2-D Raycasting.py" where we sort and send rays to endpoints (This method has its own limitations tho).
+
+Limitation:
+
+#1 Limited/brute force rays
+
+So far, the program takes on a slow but realistic approach to ray casting. The program simulates how the human eye percieves 3-D by
+sending a lot of rays within a cone and recording the distances of each ray; the distance would then corrilate with a wall height
+on screen. I have my thoughts on how to optimize the # of rays needed in order to generate a view of the map such as an 
+endpoint and angle approach however have yet to implement it.
+
+#2 90 degree map
+
+The nature of the map's geometric shape allows for raycasting and collision detection optimizations. Same methods cannot be used in a
+map with non-vertical and non-horizontal walls.
