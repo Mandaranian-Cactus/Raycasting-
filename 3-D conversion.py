@@ -3,6 +3,10 @@ import sys
 import math
 from pynput.mouse import Controller, Button
 
+# Tips:
+# Shift - Sprint
+# Move mouse - Move Camera
+
 def find_slope(agl):  # Converts angle into a slope with dx and dy
     agl = agl % 360
     if agl == 90:
