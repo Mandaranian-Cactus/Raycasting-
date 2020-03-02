@@ -1,0 +1,27 @@
+ The general idea of the program is to set up an optimzied raycasting alhorithim
+ Time complexity: O(2(2n * n))  where n is the # of walls
+ Pseudo-code
+ walls = input()
+ agls  = []
+ for wall in walls:
+     split wall into 2 endpoints
+     agl1, agl2 = angles of endpoints (Relative to the origin)#     append agl1 and agl2 into agls
+ for wall in walls:
+     intercepts = calculate all intersections between this wall and all other walls
+     for intercept in intercepts:
+          agl = angle of point (Relative to the origin)
+          agls.append(agl)
+
+ sort agls (Increasing order)
+
+ find closest_t1 with a vertical ray
+ set prev intercept to be associated with closest t1
+
+ for agl in agls:
+     find closest t1 (Rotated slightly clockwise)
+     find cloest_t1 (Rotated slightly counter clockwise)
+     find clockwise intercept using clockwise t1
+     find counter clockwise intercept using counter clockwise t1
+
+     make triangle from prev_intercept to center to counter clockwise intercept
+     prev intercept = clockwise intercept
