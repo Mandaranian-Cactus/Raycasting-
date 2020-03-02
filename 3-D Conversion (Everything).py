@@ -261,12 +261,11 @@ class Player:
 
 
             diagnol = math.sqrt(grid.width ** 2 + grid.height ** 2)
-            color = 255 - (diagnol - dist) / diagnol * 255
             color = (diagnol - dist) / diagnol * 255
 
             pygame.draw.rect(screen.screen, (color, color, color), (wall_x - wall_jump / 2, wall_y - wall_h / 2, wall_jump, wall_h))
-            # pygame.draw.aaline(screen.screen, (200,200,150), (self.x, self.y),
-            #                     (self.x + dx * bestcase_t1, self.y + dy * bestcase_t1))
+            pygame.draw.aaline(screen.screen, (200,200,150), (self.x, self.y),
+                                (self.x + dx * bestcase_t1, self.y + dy * bestcase_t1))
 
             temp_agl += self.ray_gap
             wall_x += wall_jump
@@ -336,9 +335,9 @@ while True:
     screen.update()
     screen.fill()
 
-    # grid.draw(screen.screen)
+    grid.draw(screen.screen)
     p.update(grid, mx, my)
-    # p.draw(screen.screen)
+    p.draw(screen.screen)
     p.ray_cast(grid, screen)
 
     pygame.display.update()
